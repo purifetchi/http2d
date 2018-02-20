@@ -6,6 +6,8 @@ You require the net/http2 package, which can be obtained by using `go get golang
 Then build with `go build -o http2d main.go`
 
 # Usage
+Run `./http2d [script name]` for a simple HTTP/2 server.
+
 ```
 [sae@wide http2d]$ ./http2d --help
 Usage of ./http2d:
