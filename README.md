@@ -3,6 +3,7 @@ Really simple HTTP/2.0 server, inspired by websocketd. Also my first Go project.
 
 # Installation
 You require the net/http2 package, which can be obtained by using `go get golang.org/x/net/http2`
+
 Then build with `go build -o http2d main.go`
 
 # Usage
