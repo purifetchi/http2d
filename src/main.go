@@ -22,22 +22,22 @@ func main() {
                 srv.Addr = ":" + strconv.Itoa(*portPtr)
         }
 
+        http.HandleFunc("/", cmdexec)
+
         if *insecurePtr == false {
                 fmt.Println("[INFO] Server starting.")
                 http2.ConfigureServer(&srv, nil)
-                http.HandleFunc("/", cmdexec)
-
+                
                 srv.ListenAndServeTLS(*crtPtr, *keyPtr)
         } else {
                 fmt.Println("[INFO] Server starting in HTTP/1.1 mode.")
-                http.HandleFunc("/", cmdexec)
                 srv.ListenAndServe()
         }
 
 }
 
 func cmdexec(w http.ResponseWriter, r *http.Request) {
-        out, err := exec.Command(flag.Args()[0], r.URL.Path).Output()
+        out, err := exec.Command(flag.Args()[0], r.URL.Path, r.Method).Output()
         var status = 200
         if err != nil {
                 status = 500
